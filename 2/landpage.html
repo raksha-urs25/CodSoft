@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development Course | Landing Page</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;}
+    body {background: #f4f4f9; color: #333; line-height: 1.6;}
+
+    /* Smooth scroll + fix sticky navbar issue */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; /* Adjust to header height */
+    }
+
+    /* Header */
+    header {
+      background: #2c3e50; color: #fff; padding: 15px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    header h1 {font-size: 24px;}
+    nav ul {list-style: none; display: flex; gap: 20px;}
+    nav ul li a {color: #fff; text-decoration: none; font-weight: bold;}
+    nav ul li a:hover {color: #f39c12;}
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(to right, #3498db, #8e44ad);
+      color: #fff; text-align: center; padding: 100px 20px;
+    }
+    .hero h2 {font-size: 40px; margin-bottom: 20px;}
+    .hero p {font-size: 20px; margin-bottom: 30px;}
+    .btn {
+      background: #f39c12; color: #fff; border: none;
+      padding: 12px 25px; border-radius: 5px; cursor: pointer;
+      font-size: 16px; transition: 0.3s;
+    }
+    .btn:hover {background: #d35400;}
+
+    /* Sections */
+    .about, .curriculum, .instructor, .reviews {
+      padding: 70px 20px; text-align: center;
+    }
+    .about h2, .curriculum h2, .instructor h2, .reviews h2 {
+      margin-bottom: 20px; font-size: 28px;
+    }
+    .about p {max-width: 700px; margin: auto;}
+
+    /* Curriculum */
+    .modules {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px;}
+    .module {
+      background: #fff; padding: 20px; border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.3s;
+    }
+    .module:hover {transform: translateY(-5px);}
+
+    /* Instructor */
+    .instructor img {width: 150px; border-radius: 50%; margin-bottom: 15px;}
+
+    /* Reviews */
+    .review-box {
+      background: #fff; padding: 20px; margin: 10px auto;
+      max-width: 600px; border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    footer {background: #2c3e50; color: #fff; text-align: center; padding: 15px;}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Web Dev Course</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#curriculum">Curriculum</a></li>
+        <li><a href="#instructor">Instructor</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <h2>Master Web Development</h2>
+    <p>Learn HTML, CSS, and JavaScript from scratch and build real projects.</p>
+    <button class="btn">Enroll Now</button>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <h2>About This Course</h2>
+    <p>This course is designed for beginners who want to start their journey in web development. 
+    You’ll learn everything from basic HTML & CSS to advanced JavaScript concepts and create responsive websites.</p>
+  </section>
+
+  <!-- Curriculum -->
+  <section class="curriculum" id="curriculum">
+    <h2>Course Curriculum</h2>
+    <div class="modules">
+      <div class="module"><h3>Module 1</h3><p>Introduction to HTML & CSS</p></div>
+      <div class="module"><h3>Module 2</h3><p>Responsive Web Design</p></div>
+      <div class="module"><h3>Module 3</h3><p>JavaScript Basics</p></div>
+      <div class="module"><h3>Module 4</h3><p>DOM Manipulation & Events</p></div>
+      <div class="module"><h3>Module 5</h3><p>Mini Projects</p></div>
+    </div>
+  </section>
+
+  <!-- Instructor -->
+  <section class="instructor" id="instructor">
+    <h2>Your Instructor</h2>
+    <img src="../1/photo.jpg" alt="Instructor">
+    <h3>Raksha Urs</h3>
+    <p>Aspiring Web Developer & Mentor with hands-on experience in HTML, CSS, and JavaScript. 
+    Passionate about teaching coding in a simple and practical way.</p>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews" id="reviews">
+    <h2>What Students Say</h2>
+    <div class="review-box">
+      <p>“This course made web development so easy to understand. Highly recommend for beginners!”</p>
+      <strong>- Student A</strong>
+    </div>
+    <div class="review-box">
+      <p>“I built my first responsive website after completing this course. Great teaching style!”</p>
+      <strong>- Student B</strong>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Web Dev Course | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
