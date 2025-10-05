@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Calculator</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    display: flex; justify-content: center; align-items: center; height: 100vh;
+    font-family: 'Arial', sans-serif; background: #f0f2f5;
+  }
+  .calculator {
+    background: #fff; padding: 20px; border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 340px;
+  }
+  .display {
+    background: #e9ecef; border-radius: 12px; padding: 15px;
+    font-size: 1.5rem; min-height: 60px; margin-bottom: 20px;
+    word-wrap: break-word; text-align: right; color: #333;
+  }
+  .equation { font-size: 1rem; color: #666; }
+  .buttons {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
+  }
+  .buttons button {
+    padding: 20px; font-size: 1.4rem; border: none; border-radius: 12px;
+    cursor: pointer; transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  .buttons button:hover { transform: scale(1.05); }
+  .buttons button.number { background: #f1f3f5; color: #333; }
+  .buttons button.operator { background: #ff6b6b; color: #fff; }
+  .buttons button.equal { background: #51cf66; color: #fff; grid-column: span 2; }
+  .buttons button.clear { background: #339af0; color: #fff; grid-column: span 2; }
+  .buttons button.backspace { background: #ffa94d; color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <div class="display">
+    <div class="equation" id="equation"></div>
+    <div id="result">0</div>
+  </div>
+
+  <div class="buttons">
+    <button class="clear" id="clear">AC</button>
+    <button class="backspace" id="backspace">⌫</button>
+    <button class="operator" data-operator="/">÷</button>
+    <button class="operator" data-operator="*">×</button>
+
+    <button class="number">7</button>
+    <button class="number">8</button>
+    <button class="number">9</button>
+    <button class="operator" data-operator="-">−</button>
+
+    <button class="number">4</button>
+    <button class="number">5</button>
+    <button class="number">6</button>
+    <button class="operator" data-operator="+">+</button>
+
+    <button class="number">1</button>
+    <button class="number">2</button>
+    <button class="number">3</button>
+
+    <button class="number">0</button>
+    <button class="number">.</button>
+    <button class="equal" id="equal">=</button>
+  </div>
+</div>
+
+<script>
+const equationDisplay = document.getElementById('equation');
+const resultDisplay = document.getElementById('result');
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+const equal = document.getElementById('equal');
+const clear = document.getElementById('clear');
+const backspace = document.getElementById('backspace');
+
+let equation = '';
+let currentInput = '';
+
+// Update display
+function updateDisplay() {
+  equationDisplay.innerText = equation;
+  resultDisplay.innerText = currentInput || '0';
+}
+
+// Number buttons
+numbers.forEach(button => {
+  button.addEventListener('click', () => {
+    if(button.innerText === '.' && currentInput.includes('.')) return; // prevent multiple dots
+    currentInput += button.innerText;
+    equation += button.innerText;
+    updateDisplay();
+  });
+});
+
+// Operator buttons
+operators.forEach(button => {
+  button.addEventListener('click', () => {
+    if (currentInput === '' && equation === '') return;
+    equation += button.innerText;
+    currentInput = '';
+    updateDisplay();
+  });
+});
+
+// Equal button
+equal.addEventListener('click', () => {
+  try {
+    const safeEquation = equation.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+    const evalResult = eval(safeEquation);
+    resultDisplay.innerText = evalResult;
+    equationDisplay.innerText = equation;
+    equation = evalResult.toString();
+    currentInput = '';
+  } catch {
+    resultDisplay.innerText = 'Error';
+  }
+});
+
+// Clear button
+clear.addEventListener('click', () => {
+  equation = '';
+  currentInput = '';
+  equationDisplay.innerText = '';
+  resultDisplay.innerText = '0';
+});
+
+// Backspace button
+backspace.addEventListener('click', () => {
+  if (equation.length > 0) {
+    equation = equation.slice(0, -1);
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+  }
+});
+</script>
+
+</body>
+</html>
